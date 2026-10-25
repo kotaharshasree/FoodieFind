@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create configured axios client with direct localhost backend fallback
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://foodiefind-backend-f2hn.onrender.com',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
