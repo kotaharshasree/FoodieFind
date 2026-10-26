@@ -1,8 +1,13 @@
 import axios from 'axios';
 
-// Create configured axios client with direct localhost backend fallback
+// Use the deployed FoodieFind API by default. VITE_API_URL may be either the
+// backend origin or the full /api URL; normalize it so both forms work.
+const configuredApiUrl = import.meta.env.VITE_API_URL || 'https://foodiefind-backend-f2hn.onrender.com';
+const normalizedApiUrl = configuredApiUrl.replace(/\/+$/, '');
+const apiBaseUrl = normalizedApiUrl.endsWith('/api') ? normalizedApiUrl : `${normalizedApiUrl}/api`;
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://foodiefind-backend-f2hn.onrender.com',
+  baseURL: apiBaseUrl,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
